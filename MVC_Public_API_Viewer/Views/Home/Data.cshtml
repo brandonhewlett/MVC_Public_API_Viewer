@@ -1,0 +1,54 @@
+﻿@model MVC_Public_API_Viewer.Models.DataViewModel.Rootobject
+
+@{
+    ViewData["Title"] = "Data";
+}
+
+<form asp-controller="Home" asp-action="Data">
+
+    <select id="filterSelect" name="catFilter" selected>
+        @foreach (string category in Model.categories)
+        {
+            if (category == Model.selectedCategory)
+            {
+                <option value="@category" selected>@category</option>
+            }else
+            {
+                <option value="@category">@category</option>
+            }
+        }
+    </select>
+
+    <input type="submit" value="Submit" />
+
+</form>
+
+<h1>Data</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>API</th>
+            <th>Description</th>
+            <th>Auth</th>
+            <th>HTTPS</th>
+            <th>Cors</th>
+            <th>Link</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>  
+        @foreach(DataViewModel.Entry entry in Model.entries)
+        {
+            <tr>
+                <td>@entry.API</td>
+                <td>@entry.Description</td>
+                <td>@entry.Auth</td>
+                <td>@entry.HTTPS</td>
+                <td>@entry.Cors</td>
+                <td><a href="@entry.Link">@entry.Link</a></td>
+                <td>@entry.Category</td>
+            </tr>
+        }
+    </tbody>
+</table>

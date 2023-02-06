@@ -1,0 +1,26 @@
+﻿@model MVC_Public_API_Viewer.Models.RequestViewModel
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Make a Request</h1>
+
+<h2><a href="@Model.Link">@Model.Name</a></h2>
+<p>Please refer to individual API documentation for proper formatting</p>
+
+<form asp-controller="Request" asp-action="Index">
+    <input type="hidden" id="Name" value="@Model.Name" name="Name" />
+    <input type="hidden" id="Link" value="@Model.Link" name="Link" />
+
+    <input type="text" id="newLink" name="newLink" />
+    <input type="text" id="Params" name="Params" />
+
+    <input type="submit" value="Submit" />
+</form>
+
+<h2>Response</h2>
+@if(Model.Response != null)
+{
+    <p>@Model.Response</p>
+}
+
